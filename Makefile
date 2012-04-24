@@ -2,25 +2,27 @@ include Makefile.inc
 
 DIRS	= protocols sim
 EXE	= sim_trace
-OBJS	= 
-OBJLIBS	= lib/libprotocols.a lib/libsim.a 
-LIBS	= -Llib/ -lprotocols -lsim
+OBJS	=
+LIBDIR	= lib
+OBJLIBS	= $(LIBDIR)/libprotocols.a $(LIBDIR)/libsim.a
+LIBS	= -L$(LIBDIR)/ -lprotocols -lsim
 
 all : $(EXE)
 
 $(EXE) : $(OBJLIBS)
 	g++ -o $(EXE) $(OBJS) $(LIBS)
 
-lib/libprotocols.a : force_look
+$(LIBDIR)/libprotocols.a : $(LIBDIR)
 	cd protocols; $(MAKE) $(MFLAGS)
 
-lib/libsim.a : force_look
+$(LIBDIR)/libsim.a : $(LIBDIR)
 	cd sim; $(MAKE) $(MFLAGS)
 
+.PHONY.: clean
 clean :
 	$(ECHO) cleaning up in .
-	-$(RM) -f $(EXE) $(OBJS) $(OBJLIBS)
+	-$(RM) -rf $(EXE) $(OBJS) $(OBJLIBS) $(LIBDIR)
 	-for d in $(DIRS); do (cd $$d; $(MAKE) clean ); done
 
-force_look :
-	true
+$(LIBDIR) :
+	-mkdir -p $(LIBDIR)
