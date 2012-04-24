@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 extern Simulator *Sim;
-static const char *MSI_block_states[] = {"X", "I", "S", "M"};
+static const char *MSI_block_states[] = {"X", "I", "S", "M", "IM", "IS"};
 
 /*************************
  * Constructor/Destructor.
@@ -21,7 +21,7 @@ MSI_protocol::MSI_protocol (Hash_table *my_table, Hash_entry *my_entry)
 }
 
 MSI_protocol::~MSI_protocol ()
-{    
+{
 }
 
 const char *MSI_protocol::get_state_str()
