@@ -5,7 +5,7 @@ EXE	= sim_trace
 OBJS	=
 LIBDIR	= lib
 OBJLIBS	= $(LIBDIR)/libprotocols.a $(LIBDIR)/libsim.a
-LIBS	= -L$(LIBDIR)/ -lprotocols -lsim
+LIBS	= -L$(LIBDIR)/ -lsim -lprotocols
 
 all : $(EXE)
 
