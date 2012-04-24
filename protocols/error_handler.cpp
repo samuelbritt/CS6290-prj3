@@ -13,7 +13,7 @@ ErrorHandler::~ErrorHandler()
 
 void ErrorHandler::invalid_state_error()
 {
-        fatal_error ("%s->state not valid?\n", protocol->get_name());
+        fatal_error ("Invalid Cache State for %s\n", protocol->get_name());
 }
 
 void ErrorHandler::invalid_request_error(Mreq *request)
