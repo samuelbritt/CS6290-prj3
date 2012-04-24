@@ -17,6 +17,17 @@ Protocol::~Protocol ()
 {
 }
 
+char *Protocol::get_name()
+{
+	return this->name;
+}
+
+static const char* default_state = "X";
+const char *Protocol::get_state_str()
+{
+	return default_state;
+}
+
 void Protocol::send_GETM(paddr_t addr)
 {
 	/* Create a new message to send on the bus */

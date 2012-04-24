@@ -49,6 +49,12 @@ public:
     /** These helper functions are for setting and getting the bus' shared line */
     void set_shared_line();
     bool get_shared_line();
+
+    char *get_name();
+    virtual const char *get_state_str();
+
+protected:
+    char *name; // Name of protocol
 };
 
 #endif /* PROTOCOL_H_ */

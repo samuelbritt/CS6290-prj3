@@ -7,6 +7,7 @@
 
 extern Simulator *Sim;
 
+
 /*************************
  * Constructor/Destructor.
  *************************/
@@ -15,10 +16,17 @@ MI_protocol::MI_protocol (Hash_table *my_table, Hash_entry *my_entry)
 {
 	// Initialize lines to not have the data yet!
     this->state = MI_CACHE_I;
+    this->name = "MI_protocol";
 }
 
 MI_protocol::~MI_protocol ()
 {    
+}
+
+static const char *block_states[4] = {"X","I","IM","M"};
+const char *MI_protocol::get_state_str()
+{
+	return block_states[this->state];
 }
 
 void MI_protocol::dump (void)
@@ -26,8 +34,7 @@ void MI_protocol::dump (void)
 	/* This is used to dump the cache state as debug information.  The block_states
 	 * variable should be the same size and order as the state enum in the header.
 	 */
-    const char *block_states[4] = {"X","I","IM","M"};
-    fprintf (stderr, "MI_protocol - state: %s\n", block_states[state]);
+    fprintf (stderr, "%s - state: %s\n", this->name, get_state_str());
 }
 
 void MI_protocol::process_cache_request (Mreq *request)
@@ -37,7 +44,7 @@ void MI_protocol::process_cache_request (Mreq *request)
     case MI_CACHE_IM: do_cache_IM (request); break;
     case MI_CACHE_M:  do_cache_M (request); break;
     default:
-        fatal_error ("MI_protocol->state not valid?\n");
+        fatal_error ("%s->state not valid?\n", this->name);
     }
 }
 
@@ -48,7 +55,7 @@ void MI_protocol::process_snoop_request (Mreq *request)
     case MI_CACHE_IM: do_snoop_IM (request); break;
     case MI_CACHE_M:  do_snoop_M (request); break;
     default:
-        fatal_error ("MI_protocol->state not valid?\n");
+        fatal_error ("%s->state not valid?\n", this->name);
     }
 }
 
@@ -69,7 +76,8 @@ inline void MI_protocol::do_cache_I (Mreq *request)
     	break;
     default:
         request->print_msg (my_table->moduleID, "ERROR");
-        fatal_error ("Client: I state shouldn't see this message\n");
+        fatal_error ("Client: %s state shouldn't see this message\n",
+		     get_state_str());
     }
 }
 
@@ -87,7 +95,8 @@ inline void MI_protocol::do_cache_IM (Mreq *request)
 		fatal_error("Should only have one outstanding request per processor!");
 	default:
         request->print_msg (my_table->moduleID, "ERROR");
-        fatal_error ("Client: I state shouldn't see this message\n");
+        fatal_error ("Client: %s state shouldn't see this message\n",
+		     get_state_str());
 	}
 }
 
@@ -105,7 +114,8 @@ inline void MI_protocol::do_cache_M (Mreq *request)
     	break;
     default:
         request->print_msg (my_table->moduleID, "ERROR");
-        fatal_error ("Client: M state shouldn't see this message\n");
+        fatal_error ("Client: %s state shouldn't see this message\n",
+		     get_state_str());
     }
 }
 
@@ -123,7 +133,8 @@ inline void MI_protocol::do_snoop_I (Mreq *request)
     	break;
     default:
         request->print_msg (my_table->moduleID, "ERROR");
-        fatal_error ("Client: I state shouldn't see this message\n");
+        fatal_error ("Client: %s state shouldn't see this message\n",
+		     get_state_str());
     }
 }
 
@@ -157,7 +168,8 @@ inline void MI_protocol::do_snoop_IM (Mreq *request)
 		break;
 	default:
         request->print_msg (my_table->moduleID, "ERROR");
-        fatal_error ("Client: I state shouldn't see this message\n");
+        fatal_error ("Client: %s state shouldn't see this message\n",
+		     get_state_str());
 	}
 }
 
@@ -187,7 +199,8 @@ inline void MI_protocol::do_snoop_M (Mreq *request)
     	break;
     default:
         request->print_msg (my_table->moduleID, "ERROR");
-        fatal_error ("Client: M state shouldn't see this message\n");
+        fatal_error ("Client: %s state shouldn't see this message\n",
+		     get_state_str());
     }
 }
 
