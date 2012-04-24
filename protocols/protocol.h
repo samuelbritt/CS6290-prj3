@@ -51,13 +51,13 @@ public:
     void set_shared_line();
     bool get_shared_line();
 
-    char *get_name();
+    const char *get_name();
     ModuleID get_id();
     const char *get_state_str();
 
 protected:
     int state;
-    char *name; // Name of protocol
+    const char *name; // Name of protocol
     ErrorHandler *error_handler;
     const char **block_states;
 };

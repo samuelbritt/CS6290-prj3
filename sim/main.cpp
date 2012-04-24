@@ -28,7 +28,6 @@ int main (int argc, char *argv[])
     char *protocol = NULL;
     FILE *config_file = NULL;
     char config_path[1000];
-    bool debug = false;
 
     /** Parse command line arguments.  */
     int c;

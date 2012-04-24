@@ -22,7 +22,7 @@ void fatal_error (const char *fmt, ...)
     va_start (ap, fmt);
     vfprintf (stderr, fmt, ap);
     va_end (ap);
-    
+
     /** Enable debugging by asserting zero.  */
     assert (0 && "Fatal Error");
     exit (-1);
@@ -32,7 +32,7 @@ Simulator::Simulator ()
 {
     /** Seed random number generator.  */
     srandom (1023);
-    
+
     /** Set global_clock to cycle zero.  */
     global_clock = 0;
 
@@ -67,7 +67,7 @@ Simulator::~Simulator ()
     for (int i = 0; i < settings.num_nodes; i++)
         delete Nd[i];
 
-    delete [] Nd;    
+    delete [] Nd;
 }
 
 void Simulator::dump_stats ()
@@ -76,7 +76,7 @@ void Simulator::dump_stats ()
     {
     	get_L1(i)->dump_hash_table();
     }
-    fprintf(stderr,"\nRun Time:         %8lld cycles\n",global_clock);
+    fprintf(stderr,"\nRun Time:         %8lu cycles\n",global_clock);
     fprintf(stderr,"Cache Misses:     %8ld misses\n",cache_misses);
     fprintf(stderr,"Cache Accesses:   %8ld accesses\n",cache_accesses);
     fprintf(stderr,"Silent Upgrades:  %8ld upgrades\n",silent_upgrades);
@@ -85,7 +85,6 @@ void Simulator::dump_stats ()
 
 void Simulator::run ()
 {
-    int sched;
     bool done;
 
     /** This must match what's in enums.h.  */
@@ -97,7 +96,6 @@ void Simulator::run ()
     fprintf (stderr, " Protocol: %s\n", cp_str[settings.protocol]);
 
     /** Main run loop.  */
-    sched = 0;
     done = false;
     while (!done)
     {
@@ -111,7 +109,7 @@ void Simulator::run ()
 
         for (int i = 0; i <= settings.num_nodes; i++)
             Nd[i]->tick_mc ();
-        
+
         for (int i = 0; i <= settings.num_nodes; i++)
 			Nd[i]->tock_pr ();
 
@@ -122,7 +120,7 @@ void Simulator::run ()
             if (!get_PR(i)->done ())
             {
                 done = false;
-                break;        
+                break;
             }
     }
 
@@ -146,16 +144,15 @@ Memory_controller* Simulator::get_MC (int node)
 /** Debug.  */
 void Simulator::dump_processors (void)
 {
-    Processor *pr;
     for (int i = 0; i < settings.num_nodes; i++)
     {
-        pr = get_PR (i);
+        get_PR (i);
     }
 }
 
 void Simulator::dump_outstanding_requests (int nodeID)
 {
-    assert (nodeID < settings.num_nodes);   
+    assert (nodeID < settings.num_nodes);
 }
 
 void Simulator::dump_cache_block (int nodeID, paddr_t addr)
