@@ -15,6 +15,7 @@ SOURCES:= messages.cpp\
 	  MOSI_protocol.cpp\
 	  MOESI_protocol.cpp\
 	  MOESIF_protocol.cpp\
+	  error_handler.cpp\
 	  protocol.cpp
 
 HEADERS:=$(patsubst %.cpp, %.h, $(SOURCES))

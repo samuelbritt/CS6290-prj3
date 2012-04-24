@@ -6,6 +6,7 @@
 
 class Hash_table;
 class Sharers;
+class ErrorHandler;
 
 /** This is the base class for all Coherence Protocols
  * All of your protocols will inherit from this class
@@ -51,10 +52,12 @@ public:
     bool get_shared_line();
 
     char *get_name();
+    ModuleID get_id();
     virtual const char *get_state_str();
 
 protected:
     char *name; // Name of protocol
+    ErrorHandler *error_handler;
 };
 
 #endif /* PROTOCOL_H_ */

@@ -1,4 +1,5 @@
 #include "MI_protocol.h"
+#include "error_handler.h"
 #include "../sim/mreq.h"
 #include "../sim/sim.h"
 #include "../sim/hash_table.h"
@@ -20,7 +21,7 @@ MI_protocol::MI_protocol (Hash_table *my_table, Hash_entry *my_entry)
 }
 
 MI_protocol::~MI_protocol ()
-{    
+{
 }
 
 static const char *block_states[4] = {"X","I","IM","M"};
@@ -43,8 +44,7 @@ void MI_protocol::process_cache_request (Mreq *request)
     case MI_CACHE_I:  do_cache_I (request); break;
     case MI_CACHE_IM: do_cache_IM (request); break;
     case MI_CACHE_M:  do_cache_M (request); break;
-    default:
-        fatal_error ("%s->state not valid?\n", this->name);
+    default: error_handler->invalid_state_error();
     }
 }
 
@@ -54,8 +54,7 @@ void MI_protocol::process_snoop_request (Mreq *request)
     case MI_CACHE_I:  do_snoop_I (request); break;
     case MI_CACHE_IM: do_snoop_IM (request); break;
     case MI_CACHE_M:  do_snoop_M (request); break;
-    default:
-        fatal_error ("%s->state not valid?\n", this->name);
+    default: error_handler->invalid_state_error();
     }
 }
 
@@ -75,9 +74,7 @@ inline void MI_protocol::do_cache_I (Mreq *request)
     	Sim->cache_misses++;
     	break;
     default:
-        request->print_msg (my_table->moduleID, "ERROR");
-        fatal_error ("Client: %s state shouldn't see this message\n",
-		     get_state_str());
+	error_handler->invalid_request_error(request);
     }
 }
 
@@ -91,12 +88,10 @@ inline void MI_protocol::do_cache_IM (Mreq *request)
 	 */
 	case LOAD:
 	case STORE:
-		request->print_msg (my_table->moduleID, "ERROR");
-		fatal_error("Should only have one outstanding request per processor!");
+		error_handler->multiple_requests_error(request);
+		break;
 	default:
-        request->print_msg (my_table->moduleID, "ERROR");
-        fatal_error ("Client: %s state shouldn't see this message\n",
-		     get_state_str());
+		error_handler->invalid_request_error(request);
 	}
 }
 
@@ -113,9 +108,7 @@ inline void MI_protocol::do_cache_M (Mreq *request)
     	send_DATA_to_proc(request->addr);
     	break;
     default:
-        request->print_msg (my_table->moduleID, "ERROR");
-        fatal_error ("Client: %s state shouldn't see this message\n",
-		     get_state_str());
+	error_handler->invalid_request_error(request);
     }
 }
 
@@ -132,9 +125,7 @@ inline void MI_protocol::do_snoop_I (Mreq *request)
     	 */
     	break;
     default:
-        request->print_msg (my_table->moduleID, "ERROR");
-        fatal_error ("Client: %s state shouldn't see this message\n",
-		     get_state_str());
+	error_handler->invalid_request_error(request);
     }
 }
 
@@ -167,9 +158,7 @@ inline void MI_protocol::do_snoop_IM (Mreq *request)
 		}
 		break;
 	default:
-        request->print_msg (my_table->moduleID, "ERROR");
-        fatal_error ("Client: %s state shouldn't see this message\n",
-		     get_state_str());
+		error_handler->invalid_request_error(request);
 	}
 }
 
@@ -195,12 +184,10 @@ inline void MI_protocol::do_snoop_M (Mreq *request)
     	state = MI_CACHE_I;
     	break;
     case DATA:
-    	fatal_error ("Should not see data for this line!  I have the line!");
+	error_handler->exclusivity_violation_error();
     	break;
     default:
-        request->print_msg (my_table->moduleID, "ERROR");
-        fatal_error ("Client: %s state shouldn't see this message\n",
-		     get_state_str());
+		error_handler->invalid_request_error(request);
     }
 }
 

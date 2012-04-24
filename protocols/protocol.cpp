@@ -1,4 +1,5 @@
 #include "protocol.h"
+#include "error_handler.h"
 #include "../sim/sharers.h"
 #include "../sim/hash_table.h"
 #include "../sim/sim.h"
@@ -11,15 +12,22 @@ Protocol::Protocol (Hash_table *my_table, Hash_entry *my_entry)
 {
     this->my_table = my_table;
     this->my_entry = my_entry;
+    this->error_handler = new ErrorHandler(this);
 }
 
 Protocol::~Protocol ()
 {
+	delete this->error_handler;
 }
 
 char *Protocol::get_name()
 {
 	return this->name;
+}
+
+ModuleID Protocol::get_id()
+{
+	return this->my_table->moduleID;
 }
 
 static const char* default_state = "X";
