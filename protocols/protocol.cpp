@@ -3,6 +3,8 @@
 #include "../sim/hash_table.h"
 #include "../sim/sim.h"
 
+#include <stdio.h>
+
 extern Simulator * Sim;
 
 Protocol::Protocol (Hash_table *my_table, Hash_entry *my_entry)

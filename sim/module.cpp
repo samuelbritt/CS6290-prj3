@@ -1,4 +1,6 @@
+#include <stdio.h>
 #include <assert.h>
+#include <string.h>
 
 #include "bus.h"
 #include "module.h"

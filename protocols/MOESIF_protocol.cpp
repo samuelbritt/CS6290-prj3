@@ -3,6 +3,8 @@
 #include "../sim/sim.h"
 #include "../sim/hash_table.h"
 
+#include <stdio.h>
+
 extern Simulator *Sim;
 
 /*************************
