@@ -7,6 +7,7 @@
 #include <stdio.h>
 
 extern Simulator *Sim;
+static const char *MI_block_states[] = {"X","I","IM","M"};
 
 
 /*************************
@@ -18,24 +19,25 @@ MI_protocol::MI_protocol (Hash_table *my_table, Hash_entry *my_entry)
 	// Initialize lines to not have the data yet!
     this->state = MI_CACHE_I;
     this->name = "MI_protocol";
+    this->block_states = MI_block_states;
 }
 
 MI_protocol::~MI_protocol ()
 {
 }
 
-static const char *block_states[4] = {"X","I","IM","M"};
 const char *MI_protocol::get_state_str()
 {
-	return block_states[this->state];
+	return this->block_states[this->state];
 }
+
 
 void MI_protocol::dump (void)
 {
 	/* This is used to dump the cache state as debug information.  The block_states
 	 * variable should be the same size and order as the state enum in the header.
 	 */
-    fprintf (stderr, "%s - state: %s\n", this->name, get_state_str());
+    fprintf (stderr, "%s - state: %s\n", this->name, this->get_state_str());
 }
 
 void MI_protocol::process_cache_request (Mreq *request)

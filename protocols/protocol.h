@@ -53,11 +53,13 @@ public:
 
     char *get_name();
     ModuleID get_id();
-    virtual const char *get_state_str();
+    const char *get_state_str();
 
 protected:
+    int state;
     char *name; // Name of protocol
     ErrorHandler *error_handler;
+    const char **block_states;
 };
 
 #endif /* PROTOCOL_H_ */

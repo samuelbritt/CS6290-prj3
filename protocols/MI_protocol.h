@@ -21,6 +21,7 @@ public:
 
     // Cache state for this line
     MI_cache_state_t state;
+    virtual const char *get_state_str();
 
     void process_cache_request (Mreq *request);
     void process_snoop_request (Mreq *request);
@@ -39,8 +40,6 @@ public:
     inline void do_snoop_I (Mreq *request);
     inline void do_snoop_IM (Mreq * request);
     inline void do_snoop_M (Mreq *request);
-
-    const char *get_state_str();
 };
 
 #endif // _MI_CACHE_H

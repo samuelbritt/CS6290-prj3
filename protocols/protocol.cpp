@@ -7,12 +7,15 @@
 #include <stdio.h>
 
 extern Simulator * Sim;
+static const char *default_block_states[] = {"-"};
 
 Protocol::Protocol (Hash_table *my_table, Hash_entry *my_entry)
 {
     this->my_table = my_table;
     this->my_entry = my_entry;
     this->error_handler = new ErrorHandler(this);
+    this->block_states = default_block_states;
+    this->state = 0;
 }
 
 Protocol::~Protocol ()
@@ -30,10 +33,9 @@ ModuleID Protocol::get_id()
 	return this->my_table->moduleID;
 }
 
-static const char* default_state = "X";
 const char *Protocol::get_state_str()
 {
-	return default_state;
+	return default_block_states[0];
 }
 
 void Protocol::send_GETM(paddr_t addr)
