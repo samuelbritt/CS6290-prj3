@@ -31,7 +31,6 @@ const char *MI_protocol::get_state_str()
 	return this->block_states[this->state];
 }
 
-
 void MI_protocol::dump (void)
 {
 	/* This is used to dump the cache state as debug information.  The block_states

@@ -21,7 +21,7 @@ public:
 
     // Cache state for this line
     MI_cache_state_t state;
-    virtual const char *get_state_str();
+    const char *get_state_str();
 
     void process_cache_request (Mreq *request);
     void process_snoop_request (Mreq *request);
