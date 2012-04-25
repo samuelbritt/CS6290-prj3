@@ -1,13 +1,16 @@
-#!/bin/sh
+#!/bin/bash
 
 PROG=./sim_trace
 PROCS="4 8 16"
-PROTOCOLS="MI MSI MOSI MESI"
+ALL_PROTOCOLS="MI MSI MOSI MESI"
 TMP=/tmp
 DIFF="diff -u"
 
-PROC_COUNT=4
-PROTOCOL="MI"
+PROTOCOLS=`echo $@ | awk '{print toupper($0)}'`
+if [[ $# = 0 ]]
+then
+	PROTOCOLS=$ALL_PROTOCOLS
+fi
 
 for PROC_COUNT in $PROCS
 do
