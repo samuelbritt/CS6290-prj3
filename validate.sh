@@ -2,7 +2,7 @@
 
 PROG=./sim_trace
 PROCS="4 8 16"
-PROTOCOLS="MI MSI" # MESI MOSI"
+PROTOCOLS="MI MSI MOSI"
 TMP=/tmp
 DIFF="diff -u"
 
