@@ -179,7 +179,6 @@ inline void MSI_protocol::do_snoop_IM (Mreq *request)
 		default:
 			error_handler->invalid_request_error(request);
 	}
-
 }
 
 inline void MSI_protocol::do_snoop_IS (Mreq *request)
@@ -195,5 +194,4 @@ inline void MSI_protocol::do_snoop_IS (Mreq *request)
 		default:
 			error_handler->invalid_request_error(request);
 	}
-
 }
