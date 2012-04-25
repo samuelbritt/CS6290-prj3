@@ -7,7 +7,9 @@
 #include <stdio.h>
 
 extern Simulator *Sim;
-static const char *MESI_block_states[] = {"X","I","S","E","M", "IM", "IS"};
+static const char *MESI_block_states[] = {
+	"X","I","S","E","M", "IM", "IS"
+};
 
 
 /*************************
@@ -100,11 +102,13 @@ inline void MESI_protocol::do_cache_E (Mreq *request)
 {
 	switch (request->msg) {
 		case LOAD:
-			checkpoint(request, "Sending from $ to proc (exclusive)");
+			checkpoint(request,
+				   "Sending from $ to proc (exclusive)");
 			send_DATA_to_proc(request->addr);
 			break;
 		case STORE:
-			checkpoint(request, "Sending from $ to proc (silent upgrade)");
+			checkpoint(request,
+				   "Sending from $ to proc (silent upgrade)");
 			state = MESI_CACHE_M;
 			Sim->silent_upgrades++;
 			send_DATA_to_proc(request->addr);
@@ -165,7 +169,6 @@ inline void MESI_protocol::do_snoop_S (Mreq *request)
 			state = MESI_CACHE_I;
 			break;
 		case DATA:
-			set_shared_line();
 			break;
 		default:
 			error_handler->invalid_request_error(request);
@@ -188,8 +191,6 @@ inline void MESI_protocol::do_snoop_E (Mreq *request)
 			send_DATA_on_bus(request->addr, request->src_mid);
 			break;
 		case DATA:
-			error_handler->invalid_request_error(request);
-			break;
 		default:
 			error_handler->invalid_request_error(request);
 	}
