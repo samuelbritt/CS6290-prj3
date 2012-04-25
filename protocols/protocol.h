@@ -60,6 +60,9 @@ protected:
     const char *name; // Name of protocol
     ErrorHandler *error_handler;
     const char **block_states;
+
+    // print out a node id, request address, and message
+    void checkpoint(Mreq *request, const char *str);
 };
 
 #endif /* PROTOCOL_H_ */

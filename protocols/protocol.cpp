@@ -97,3 +97,15 @@ bool Protocol::get_shared_line ()
 	// Find out if the shared line is active
 	return Sim->bus->is_shared_active();
 }
+
+#ifdef DEBUG
+void Protocol::checkpoint(Mreq *request, const char *str)
+{
+	fprintf(stderr, "%d %p: %s\n", my_table->moduleID.nodeID,
+		(void *) request->addr, str);
+}
+#else
+void Protocol::checkpoint(Mreq *request, const char *str)
+{
+}
+#endif
