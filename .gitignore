@@ -13,3 +13,4 @@ sim_trace
 *.lai
 *.la
 *.a
+runs/runs/
