@@ -3,12 +3,22 @@
 
 import os
 import pprint
+from matplotlib import rc
 import matplotlib.pyplot as plt
 from scipy import *
 
+rc('text', usetex=True)
+rc('font', family='serif', size=9.0)
+rc('legend', fontsize='small')
+rc('xtick.major', size=1)
+rc('ytick.major', size=1)
+rc('figure.subplot', bottom=.2)
+rc('savefig', dpi=300)
+rc('axes', linewidth=.5)
+
 data_dir = "./runs/data"
 plots_dir = "./runs/plots"
-all_protocols = ("MI", "MSI", "MESI", "MOSI", "MOESI", "MOESIF")
+all_protocols = ("MI", "MSI", "MOSI", "MESI", "MOESI", "MOESIF")
 colors = {}
 
 def init_colors():
@@ -40,7 +50,7 @@ def plot_all_data(ax, data, data_filenames, data_filelabels, data_type,
     width = 0.8 / len(all_protocols)
     ind = arange(len(data_filenames)) + (1 - (len(protocols) * width))/2
     edgecolor="white"
-    linewidth=0.3
+    linewidth=0
     bars = []
     for i, p in enumerate(protocols):
         color=colors[p]
@@ -59,15 +69,16 @@ def plot_all_data(ax, data, data_filenames, data_filelabels, data_type,
 
 def make_split_subplot(data, data_filenames, data_filelabels, data_type,
                        ylabel=None, protocols=all_protocols):
-    f = plt.figure()
-    ax1 = plt.subplot2grid((12,12), (0,0), rowspan=11, colspan=3)
-    ax2 = plt.subplot2grid((12,12), (0,4), rowspan=11, colspan=8)
+    f = plt.figure(figsize=(4.5,3))
+    ax1 = plt.subplot2grid((1,12), (0,0), colspan=3)
+    ax2 = plt.subplot2grid((1,12), (0,4), colspan=8)
     bars1 = plot_all_data(ax1, data, data_filenames[:3], data_filelabels[:3],
                           data_type=data_type, protocols=protocols)
     bars2 = plot_all_data(ax2, data, data_filenames[3:], data_filelabels[3:],
                           data_type=data_type, protocols=protocols)
     ax1.set_ylabel(ylabel)
-    ax2.legend(bars2, protocols, "upper left", frameon=False)
+    ax2.legend(bars2, protocols, "best", frameon=False)
+    return f
 
 if __name__ == '__main__':
     try:
@@ -98,13 +109,34 @@ if __name__ == '__main__':
     for f in data_filenames:
         data[f] = read_data(open(os.path.join(data_dir, f)))
 
-    make_split_subplot(data, data_filenames, data_filelabels,
-                       data_type="runtime", ylabel="Runtime (cycles)")
-    make_split_subplot(data, data_filenames, data_filelabels,
-                       data_type="transfers", ylabel="Cache to Cache Transfers")
-    make_split_subplot(data, data_filenames, data_filelabels,
-                       data_type="upgrades", ylabel="Silent Upgrades",
-                       protocols=("MESI", "MOESI", "MOESIF"))
-    make_split_subplot(data, data_filenames, data_filelabels,
-                       data_type="misses", ylabel="Cache Misses")
+    f = make_split_subplot(data, data_filenames, data_filelabels,
+                           data_type="runtime", ylabel="Runtime (cycles)")
+    for ax in f.get_axes():
+        ax.ticklabel_format(style='sci', scilimits=(0,0), axis='y')
+    f.savefig(os.path.join(plots_dir, "runtime.pdf"))
+
+    f = make_split_subplot(data, data_filenames, data_filelabels,
+                           data_type="transfers",
+                           ylabel="Cache to Cache Transfers")
+    for ax in f.get_axes():
+        ax.ticklabel_format(style='sci', scilimits=(0,0), axis='y')
+    f.savefig(os.path.join(plots_dir, "transfers.pdf"))
+
+    f = make_split_subplot(data, data_filenames, data_filelabels,
+                           data_type="upgrades", ylabel="Silent Upgrades",
+                           protocols=("MESI", "MOESI", "MOESIF"))
+    f.savefig(os.path.join(plots_dir, "upgrades.pdf"))
+
+    f = make_split_subplot(data, data_filenames, data_filelabels,
+                           data_type="misses", ylabel="Cache Misses")
+    for ax in f.get_axes():
+        ax.ticklabel_format(style='sci', scilimits=(0,0), axis='y')
+    f.savefig(os.path.join(plots_dir, "misses.pdf"))
+
+    f = make_split_subplot(data, data_filenames, data_filelabels,
+                           data_type="accesses", ylabel="Cache Accesses")
+    for ax in f.get_axes():
+        ax.ticklabel_format(style='sci', scilimits=(0,0), axis='y')
+    f.savefig(os.path.join(plots_dir, "accesses.pdf"))
+
     plt.show()
