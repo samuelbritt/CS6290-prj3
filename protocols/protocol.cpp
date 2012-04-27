@@ -66,7 +66,7 @@ void Protocol::send_DATA_on_bus(paddr_t addr, ModuleID dest)
 	// When DATA is sent on the bus it _MUST_ have a destination module
 	new_request = new Mreq(DATA, addr, my_table->moduleID, dest);
 	/* Debug Message -- DO NOT REMOVE or you won't match the validation runs */
-	fprintf(stderr,"**** DATA_SEND Cache: %d -- Clock: %lu\n",my_table->moduleID.nodeID,Global_Clock);
+	fprintf(stderr,"**** DATA_SEND Cache: %d -- Clock: %llu\n",my_table->moduleID.nodeID,Global_Clock);
 	/* This will but the message in the bus' arbitration queue to sent */
 	this->my_table->write_to_bus(new_request);
 

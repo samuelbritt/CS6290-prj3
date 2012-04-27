@@ -40,7 +40,7 @@ void Memory_controller::tick()
 	    Mreq * new_request;
 	    new_request = new Mreq(DATA,data_addr,moduleID,data_target);
 	    request_in_progress = false;
-	    fprintf(stderr,"**** DATA SEND MC -- Clock: %lu\n", Global_Clock);
+	    fprintf(stderr,"**** DATA SEND MC -- Clock: %llu\n", Global_Clock);
 	    this->write_output_port(new_request);
     }
 }

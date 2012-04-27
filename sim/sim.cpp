@@ -76,7 +76,7 @@ void Simulator::dump_stats ()
     {
     	get_L1(i)->dump_hash_table();
     }
-    fprintf(stderr,"\nRun Time:         %8lu cycles\n",global_clock);
+    fprintf(stderr,"\nRun Time:         %8llu cycles\n",global_clock);
     fprintf(stderr,"Cache Misses:     %8ld misses\n",cache_misses);
     fprintf(stderr,"Cache Accesses:   %8ld accesses\n",cache_accesses);
     fprintf(stderr,"Silent Upgrades:  %8ld upgrades\n",silent_upgrades);

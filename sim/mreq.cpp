@@ -36,7 +36,7 @@ void Mreq::print_msg (ModuleID mid, const char *add_msg)
     print_id ("node", mid);
     print_id ("src", src_mid);
     print_id ("dest", dest_mid);
-    fprintf (stderr, "tag: 0x%8llx clock: %8lu ", (long long int)addr>>settings.cache_line_size_log2, Global_Clock);
+    fprintf (stderr, "tag: 0x%8llx clock: %8llu ", (long long int)addr>>settings.cache_line_size_log2, Global_Clock);
     fprintf (stderr, " %8s\n", Mreq::message_t_str[msg]);
 }
 
@@ -46,6 +46,6 @@ void Mreq::dump ()
     fprintf (stderr, "Request Dump ");
     print_id ("src", src_mid);
     print_id ("dest", dest_mid);
-    fprintf (stderr, "0x%8llx Clock: %8lu %20s\n",
+    fprintf (stderr, "0x%8llx Clock: %8llu %20s\n",
              (long long int)addr, Global_Clock, Mreq::message_t_str[msg]);
 }

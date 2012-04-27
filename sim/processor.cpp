@@ -39,7 +39,7 @@ void Processor::tick ()
 
     if (inbound_request)
     {
-    	fprintf(stderr,"* COMPLETE -- PR: %d -- Clock: %lu\n",moduleID.nodeID, Global_Clock);
+	fprintf(stderr,"* COMPLETE -- PR: %d -- Clock: %llu\n",moduleID.nodeID, Global_Clock);
     	assert (inbound_request->msg == DATA);
     	outstanding_request = false;
         delete inbound_request;
@@ -53,7 +53,7 @@ void Processor::tick ()
     {
         Mreq *request;
 
-        fprintf (stderr,"* FETCH -- PR: %d -- Clock: %lu -- %c 0x%llx\n", moduleID.nodeID, Global_Clock, c, (unsigned long long int)addr);
+	fprintf (stderr,"* FETCH -- PR: %d -- Clock: %llu -- %c 0x%llx\n", moduleID.nodeID, Global_Clock, c, (unsigned long long int)addr);
 
         switch (c) {
         case 'r': request = new Mreq (LOAD, addr, moduleID); break;
