@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.1.19)  27 APR 2012 15:34
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.1.19)  27 APR 2012 16:50
 entering extended mode
  file:line:error style messages enabled.
  %&-line parsing enabled.
@@ -305,26 +305,26 @@ File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
 ) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 38.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 38.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 46.
 (/usr/share/texmf-texlive/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
 (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count128
@@ -341,8 +341,8 @@ LaTeX Font Info:    ... okay on input line 38.
 \symsi@greek=\mathgroup6
 Package siunitx Info: xfrac package unavailable
 (siunitx)             using `fraction=sfrac' will fall back on
-(siunitx)             nicefrac-like method on input line 38.
-Package hyperref Info: Link coloring OFF on input line 38.
+(siunitx)             nicefrac-like method on input line 46.
+Package hyperref Info: Link coloring OFF on input line 46.
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
@@ -350,43 +350,43 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
 \c@section@level=\count133
 )
-LaTeX Info: Redefining \ref on input line 38.
-LaTeX Info: Redefining \pageref on input line 38.
+LaTeX Info: Redefining \ref on input line 46.
+LaTeX Info: Redefining \pageref on input line 46.
 (./report.out) (./report.out)
 \@outlinefile=\write4
 \openout4 = `report.out'.
 
 \AtBeginShipoutBox=\box38
-LaTeX Font Info:    Try loading font information for U+msa on input line 38.
+LaTeX Font Info:    Try loading font information for U+msa on input line 46.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 38.
+LaTeX Font Info:    Try loading font information for U+msb on input line 46.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-) <../runs/plots/runtime.pdf, id=3, 325.215pt x 216.81pt>
+) <../runs/plots/runtime.pdf, id=19, 325.215pt x 216.81pt>
 File: ../runs/plots/runtime.pdf Graphic file (type pdf)
-<use ../runs/plots/runtime.pdf> <../runs/plots/misses.pdf, id=4, 325.215pt x 216.81pt>
+<use ../runs/plots/runtime.pdf> <../runs/plots/misses.pdf, id=20, 325.215pt x 216.81pt>
 File: ../runs/plots/misses.pdf Graphic file (type pdf)
-<use ../runs/plots/misses.pdf> <../runs/plots/transfers.pdf, id=5, 325.215pt x 216.81pt>
+<use ../runs/plots/misses.pdf> <../runs/plots/transfers.pdf, id=21, 325.215pt x 216.81pt>
 File: ../runs/plots/transfers.pdf Graphic file (type pdf)
-<use ../runs/plots/transfers.pdf> <../runs/plots/upgrades.pdf, id=6, 325.215pt x 216.81pt>
+<use ../runs/plots/transfers.pdf> <../runs/plots/upgrades.pdf, id=22, 325.215pt x 216.81pt>
 File: ../runs/plots/upgrades.pdf Graphic file (type pdf)
 <use ../runs/plots/upgrades.pdf> [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <../runs/plots/runtime.pdf>] [2 <../runs/plots/misses.pdf> <../runs/plots/transfers.pdf>] [3 <../runs/plots/upgrades.pdf>] (./report.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <../runs/plots/runtime.pdf>] [2 <../runs/plots/misses.pdf> <../runs/plots/transfers.pdf>] [3 <../runs/plots/upgrades.pdf>] [4] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 7409 strings out of 495061
- 106077 string characters out of 1182621
- 192440 words of memory out of 3000000
- 10432 multiletter control sequences out of 15000+50000
- 14802 words of font info for 59 fonts, out of 3000000 for 9000
+ 7435 strings out of 495061
+ 106312 string characters out of 1182621
+ 196644 words of memory out of 3000000
+ 10451 multiletter control sequences out of 15000+50000
+ 16054 words of font info for 63 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  38i,8n,55p,345b,339s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
-Output written on report.pdf (3 pages, 237277 bytes).
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on report.pdf (4 pages, 276541 bytes).
 PDF statistics:
- 111 PDF objects out of 1000 (max. 8388607)
- 8 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 149 PDF objects out of 1000 (max. 8388607)
+ 12 named destinations out of 1000 (max. 500000)
+ 45 words of extra memory for PDF output out of 10000 (max. 10000000)
 
