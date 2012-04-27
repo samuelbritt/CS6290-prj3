@@ -1,3 +1,5 @@
+runs/runs/
+runs/validation/
 # Exe
 sim_trace
 
@@ -13,4 +15,3 @@ sim_trace
 *.lai
 *.la
 *.a
-runs/runs/
