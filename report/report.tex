@@ -60,7 +60,7 @@
   occurred during the simulation of each trace for each coherency
   protocol. Figure~\ref{fig:upgrades} shows, for each trace, the
   number of silent upgrades from the exclusive to the modified state.
-  Data only those protocols that have an exclusive state, namely
+  Data from only those protocols that have an exclusive state, namely
   \MESI, \MOESI, and \MOESIF, are shown.
 
   \begin{figure}[htbp]
@@ -116,51 +116,49 @@
   \section{Discussion}
   \label{sec:discussion}
 
-  Interestingly, the simple \MI protocol outperformed most or all
+  Interestingly, the simple \MI protocol outperforms most or all
   other protocols in almost every trace, as can be seen from
   Figure~\ref{fig:runtime}. Compare with the runtime results for the
   \MSI protocol: with the exception of trace $4$ (which will be
-  discussed later), adding the shared state to the protocol increased
+  discussed later), adding the shared state to the protocol increases
   runtime by a factor of as much as $4$. This is perhaps not as
   expected, since adding a shared state allows multiple caches to keep
   read-only copies of data, which should reduce the number of cache
   misses; indeed this is the case, as shown by
   Figure~\ref{fig:misses}. In every simulation of the short traces,
-  the number of cache misses is reduced by sharing, and the effect is
+  the number of cache misses is reduced by sharing; the effect is
   particularly evident for the read-heavy traces $3$--$7$.
 
   However, adding the shared state removes one critical characteristic
   of the simpler \MI protocol: the high degree of cache-to-cache
   transfers.  Even if a processor needs only read-only accesses of a
   cache line, in the \MI protocol it still must be put in the modified
-  state, and thus it will supply the data over the bus on the next
+  state. It therefore will supply the data over the bus on the next
   request, avoiding the costly trip to memory. The effect is quite
   clearly shown by Figure~\ref{fig:transfers}. The \MI protocol may
   not allow true sharing, but sharing may not be necessary for
   performance if the bus has sufficiently low latency.
 
-  One interesting trace was trace $4$. It seems to buck the trend: the
-  \MSI protocol outperformed the \MI protocol, and the number of cache
-  misses and cache-to-cache transfers using the \MI protocol dominated
+  One interesting trace is trace $4$. It seems to buck the trend: the
+  \MSI protocol outperforms the \MI protocol, and the number of cache
+  misses and cache-to-cache transfers using the \MI protocol dominate
   all the other traces and protocols. Upon inspection of the trace
-  itself the reason became apparent. Trace $4$ simulated a machine
+  itself the reason became apparent. Trace $4$ simulates a machine
   with four processors. After an initial write to a particular memory
   address by the first processor, all accesses from all processors are
   reads to that address. Clearly, such an access pattern benefits from
   the sharing provided by the \MSI protocol. The penalty of going to
   memory is avoided because, after the initial access from each
   processor, the data in the cache is clean and can be provided to the
-  processor directly---no need for bus or memory interaction. So
-  applications with such a read-heavy access pattern would benefit
-  from such a protocol.
+  processor directly---no need for bus or memory interaction.
 
-  Though most traces performed will in the \MOESI and \MOESIF
-  protocols, traces $5$, $6$, and $7$ seemed to particularly benefit
-  from the addition of the exclusive state. A quick look at
+  Though most traces perform well in the \MOESI and \MOESIF protocols,
+  traces $5$, $6$, and $7$ seem to particularly benefit from the
+  addition of the exclusive state. A quick look at
   Figure~\ref{fig:upgrades} shows the reason: the access patterns of
-  those traces allowed for a larger number of silent upgrades from the
-  exclusive state to the modified state. This reduced the number of
-  cache misses (see Figure~\ref{fig:misses}) since, without the
+  those traces allow for a larger number of silent upgrades from the
+  exclusive state to the modified state. This reduces the number of
+  cache misses (see Figure~\ref{fig:misses}) because, without the
   exclusive state, such a cache line would be in the shared state and
   would have to go to the bus to get modified access.
 
@@ -180,8 +178,8 @@
   memory controller, a slower bus), or if there were many more
   processors contending for the bus, the simpler protocol may not be
   sufficient. Also, if the memory access pattern is known \emph{a
-    priori} to be, say almost exclusively read-only, a protocol may be
-  chosen that optimizes for that use case.
+    priori} to be, say almost exclusively read-only, a protocol with
+  increased sharing may be chosen that optimizes for that use case.
 
   % section conclusion (end)
 
